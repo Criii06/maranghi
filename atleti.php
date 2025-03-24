@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
     <?php
@@ -24,13 +38,26 @@
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
-        while ($riga = mysqli_fetch_assoc($result)) {
-            echo "<pre>";
-            print_r($riga); 
-            echo "</pre>";
+        echo "<table>";
+        
+        $columns = mysqli_fetch_fields($result);
+        echo "<tr>";
+        foreach ($columns as $column) {
+            echo "<th>" . htmlspecialchars($column->name) . "</th>";
         }
+        echo "</tr>";
+
+        while ($riga = mysqli_fetch_assoc($result)) {
+            echo "<tr>";
+            foreach ($riga as $campo) {
+                echo "<td>" . htmlspecialchars($campo) . "</td>";
+            }
+            echo "</tr>";
+        }
+        
+        echo "</table>";
     } else {
-        echo "nce niente";
+        echo "Non ci sono dati";
     }
 
     mysqli_close($conn);
