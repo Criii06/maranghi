@@ -20,7 +20,7 @@
     ?>
     <form action="modificaElimina.php" method="post">
         <select name="atleta">
-            <option value="">Seleziona un atleta</option>
+            <option>Seleziona un atleta</option>
             <?php
                 $sql = "SELECT * FROM Atleti";
                 $result = mysqli_query($conn, $sql);
