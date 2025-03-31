@@ -7,25 +7,9 @@
 </head>
 <body>
 
-<form action="modificaElimina.php" method="post">
-    <label >Nuovo Nome</label>
-    <input type="text" name="nuovoNome"  value="<?php echo isset($_POST['nome']); ?>">
 
-    <label for="nuovoCognome">Nuovo Cognome</label>
-    <input type="text" name="nuovoCognome" value="<?php echo isset($_POST['cognome']) ? htmlspecialchars($_POST['nuovoCognome']) : ''; ?>">
-
-    <label>Nuovo Nazionalita</label>
-    <input type="text" name="nuovoNazione"  value="<?php echo isset($_POST['nazione']) ? htmlspecialchars($_POST['nuovoNazione']) : ''; ?>">
-
-    <label >ID Atleta </label>
-    <input type="text" name="atleta" value="<?php echo isset($_POST['id_atleta']); ?>">
-
-    <input type="submit" value="Aggiorna o Elimina">
-</form>
 
     <?php
-
-    
 
      $servername = "10.1.0.52";
      $db_username = "fagiani";
@@ -56,9 +40,26 @@
      ";
 
      $result = mysqli_query($conn, $sql);
+     $riga=mysqli_fetch_assoc($result);
+     print_r($riga);
+/*
+     <form action="modificaElimina.php" method="post">
+    <label >Nuovo Nome</label>
+    <input type="text" name="nuovoNome"  value="<?php echo isset($_POST['nome']); ?>">
 
+    <label for="nuovoCognome">Nuovo Cognome</label>
+    <input type="text" name="nuovoCognome" value="<?php echo isset($_POST['cognome']) ? htmlspecialchars($_POST['nuovoCognome']) : ''; ?>">
+
+    <label>Nuovo Nazionalita</label>
+    <input type="text" name="nuovoNazione"  value="<?php echo isset($_POST['nazione']) ? htmlspecialchars($_POST['nuovoNazione']) : ''; ?>">
+
+    <label >ID Atleta </label>
+    <input type="text" name="atleta" value="<?php echo ($_POST['id_atleta']); ?>">
+
+    <input type="submit" value="Aggiorna o Elimina">
+</form>
      print_r ($result);
-
+*/
 
      mysqli_close($conn);
 
