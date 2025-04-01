@@ -5,27 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body >
-    <form method="post">
+<body>
+    <form id="login" method="post">
         <input type="text" name="username">
         <input type="password" name="password">
-        <input type="date" name="data">
         <button type="submit">Login</button>
     </form>
-<?php
-if (isset($_POST['username']) && isset($_POST['password'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $data = $_POST['data'];
-    if ($username === 'paolo' && $password === 'rossi') {
-        echo 'Ciao Paolo, la data è: '.$data;
+
+    <?php
+    if (isset($_COOKIE['log']) && $_COOKIE['log'] == "Loggato") {
+        echo 'Ciao Paolo';
+        echo "<script>document.getElementById('login').style.display = 'none';</script>";
     } else {
-        echo 'Credenziali errate';
+        if (isset($_POST['username']) && isset($_POST['password'])) {
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+
+            if ($username === 'paolo' && $password === 'rossi') {
+                setcookie("log", "Loggato", time() + 30, "/");
+            } else {
+                echo 'Credenziali errate';
+            }
+        }
     }
-}
-?>
-<script>
-    
-</script>
+    ?>
 </body>
 </html>
