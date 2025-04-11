@@ -1,0 +1,64 @@
+Si vuole creare un'applicazione per la gestione di una libreria online.
+In questo caso, avremo indicazioni per i libri, gli autori e le categorie di libri.
+L'utente potrà inserire nuovi libri specificando l'autore e la categoria,
+potrà aggiornare tali informazioni ed eliminare le informazioni obsolete.
+Progettare l'intera applicazione (database, pagine html e pagine php).
+
+
+DB:
+
+    UTENTE
+    id
+    nome
+    password
+    tipo
+
+    LIBRO
+    id
+    titolo
+
+    CATEGORIA
+    id
+    nome
+
+    AUTORE
+    id
+    nome
+
+    CREATE TABLE utenti(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(30),
+    PASSWORD VARCHAR(30),
+    tipo ENUM("edit", "read")
+    );
+
+    CREATE TABLE libri(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titolo VARCHAR(30)
+    );
+
+    CREATE TABLE categorie(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(30)
+    );
+
+    CREATE TABLE autori(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(30)
+    );
+
+    CREATE TABLE autori_libri(
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        id_libro int,
+        id_autore int,
+        FOREIGN KEY (id_libro) REFERENCES libri(id),
+        FOREIGN KEY (id_autore) REFERENCES autori(id)
+    );
+
+        CREATE TABLE categorie_libri(
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        id_libro int,
+        id_categoria int,
+        FOREIGN KEY (id_libro) REFERENCES libri(id),
+        FOREIGN KEY (id_categoria) REFERENCES categorie(id)
+    );
