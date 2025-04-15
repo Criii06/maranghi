@@ -41,7 +41,8 @@
 
         $risultato = mysqli_fetch_assoc($result);
         $permessi = $risultato["tipo"];
-        setcookie("permessi", $permessi, time() + 3600, "/");
+        session_start();
+        $_SESSION['permessi']=$permessi;
 
         if (mysqli_num_rows($result) > 0) {
           header("location:menuLibreria.php");

@@ -10,7 +10,7 @@
     
     <a href="modifica">modifica</a>
     <br>
-    <a href="inserisci">inserisci</a>
+    <a href="inserisci.php">inserisci</a>
     <br>
     <a href="elimina.php">elimina</a>
     <br>   

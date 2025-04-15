@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controllo Permessi</title>
+    <title></title>
 </head>
 <body>
     <?php
-    if (!isset($_COOKIE["permessi"]) || $_COOKIE["permessi"] != "edit") {
+    session_start();
+    if (!isset($_SESSION["permessi"]) || $_SESSION["permessi"] != "edit") {
         header("Location: menuLibreria.php");
     } else {
         $servername = "10.1.0.52";
