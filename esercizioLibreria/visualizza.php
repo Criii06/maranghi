@@ -8,7 +8,7 @@
 <body>
     <?php
 
-        $servername = "10.1.0.52";
+        $servername = "10.1.0.52:8306";
         $db_username = "fagiani";
         $db_password = "fagiani";
         $database = "fagiani_libreria";
@@ -46,6 +46,11 @@
             echo "Non ci sono dati";
         }
 
+        mysqli_close($conn);
+
     ?>
+    <p>
+    <a href="menuLibreria.php">torna al menu</a>
+    </p>
 </body>
 </html>

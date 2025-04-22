@@ -11,7 +11,7 @@
     if (!isset($_SESSION["permessi"]) || $_SESSION["permessi"] != "edit") {
         header("Location: menuLibreria.php");
     } else {
-        $servername = "10.1.0.52";
+        $servername = "10.1.0.52:8306";
         $db_username = "fagiani";
         $db_password = "fagiani";
         $database = "fagiani_libreria";
@@ -33,7 +33,6 @@
             }
         }
 
-        // Visualizza elenco dei libri
         $sql = "SELECT libri.titolo FROM libri";
         $result = mysqli_query($conn, $sql);
 
@@ -50,5 +49,8 @@
         mysqli_close($conn);
     }
     ?>
+      <p>
+    <a href="menuLibreria.php">torna al menu</a>
+    </p>
 </body>
 </html>
