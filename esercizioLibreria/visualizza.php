@@ -19,7 +19,14 @@
             die("Connection failed: " . mysqli_connect_error());
         }
 
-        $sql = "SELECT libri.titolo, autori.nome as nomeAut, categorie.nome as nomeCat FROM libri, categorie, autori, autori_libri, categorie_libri WHERE libri.id = autori_libri.id_libro AND libri.id = categorie_libri.id_libro AND autori.id = autori_libri.id_autore AND categorie.id = categorie_libri.id_categoria";
+        $sql = "
+        SELECT libri.titolo, autori.nome, categorie.nome
+        FROM libri
+        JOIN autori_libri ON libri.id = autori_libri.id_libro
+        JOIN autori ON autori_libri.id_autore = autori.id
+        JOIN categorie_libri ON libri.id = categorie_libri.id_libro
+        JOIN categorie ON categorie_libri.id_categoria = categorie.id;
+";
 
         $result = mysqli_query($conn, $sql);
 
@@ -46,7 +53,7 @@
             echo "Non ci sono dati";
         }
 
-        mysqli_close($conn);
+        mysqli_close($conn);    
 
     ?>
     <p>
