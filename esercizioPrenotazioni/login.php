@@ -14,8 +14,11 @@
         <button type="submit">Login</button>
     </form>
 
+    <a href="registrazione.php">torna a registrazione</a>
+
     <?php
     include "conn.php";
+    session_start();
 
     if (isset($_POST['username']) && isset($_POST['password'])) {
         $username = $_POST['username'];
@@ -25,17 +28,19 @@
             die("Connection failed: " . mysqli_connect_error());
         }
 
-        $sql = "SELECT * FROM utenti WHERE nome = '$username' AND PASSWORD = '$password'";
+        $sql = "SELECT utenti.password FROM utenti WHERE nome = '$username'";
         $result = mysqli_query($conn, $sql);
-
-        session_start();
 
         if ($result && mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
-            $_SESSION['autenticato'] = true;
-            $_SESSION['id'] = $row['id'];
-            header("Location: menu.php");
-            exit;
+            if (password_verify($password, $row['password'])) {
+                $_SESSION['autenticato'] = true;
+                $_SESSION['username'] = $username;
+                header("Location: menu.php");
+                exit();
+            } else {
+                echo "Credenziali non valide. Riprova.";
+            }
         } else {
             echo "Credenziali non valide. Riprova.";
         }

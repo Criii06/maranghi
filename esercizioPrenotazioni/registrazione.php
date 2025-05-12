@@ -23,7 +23,7 @@
 
     if (isset($_POST['username']) && isset($_POST['password'])) {
         $username = $_POST['username'];
-        $password = $_POST['password'];
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT); 
 
         $sql = "INSERT INTO utenti (nome, password) VALUES ('$username', '$password')";
         $result = mysqli_query($conn, $sql);

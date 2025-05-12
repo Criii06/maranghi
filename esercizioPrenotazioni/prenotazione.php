@@ -9,6 +9,12 @@
     <?php
     include "conn.php";
     session_start();
+
+    if (!isset($_SESSION['autenticato']) || $_SESSION['autenticato'] !== true) {
+        header("Location: login.php");
+        exit();
+    }
+
     $eventoId = $_POST['evento_id'];
     $sql = "SELECT * FROM eventi WHERE id = '$eventoId'";
     $result = mysqli_query($conn, $sql);
@@ -17,8 +23,10 @@
         $riga = mysqli_fetch_assoc($result);
         $posti = $riga['posti'];
         $prezzo = $riga['prezzo'];
+        $slqPostiPresi="SELECT postiPrenotati FROM prenotazioni WHERE id_evento =" . $eventoId;
+        $resultPostiPresi = mysqli_query($conn, $slqPostiPresi);
         echo "<p> Nome evento: " . htmlspecialchars($riga['nome']) . "</p>";
-        echo "<p> Posti disponibili: " . htmlspecialchars($posti) . "</p>";
+        echo "<p> Posti disponibili: " . htmlspecialchars($posti-mysqli_fetch_assoc($resultPostiPresi)) . "</p>";
         echo "<p> Prezzo evento: " . htmlspecialchars($prezzo) . "</p>";
         echo "<form action='prenotazioneExe.php' method='post'>";
         echo "<input type='number' name='posti_prenotati' min='1' max='$posti'>" ;
@@ -30,5 +38,6 @@
     }
     
     ?>
+    <a href="menu.php">torna al menu</a>;
 </body>
 </html>
