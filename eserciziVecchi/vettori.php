@@ -64,7 +64,7 @@ if(count($numeriSopraMedia) > 0) {
     echo "<p>Non ci sono numeri sopra la media.</p>";
 }
 
-$studenti5i = array("Troiani" => date_create(2006-08-09),"Urbanelli", "Rui", "Spigarelli");
+$studenti5i = array("Troiani" => date_create(2006-08-09),"Urbanelli"=> date_create(2006-04-09), "Rui"=> date_create(2006-05-09), "Spigarelli"=> date_create(2006-01-09));
 echo date("Y m d");
 ?>
 </body>
