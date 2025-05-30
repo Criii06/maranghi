@@ -12,7 +12,7 @@
         <input type="submit" value="Invia">
     </form>
 
-    <form method="get" action="articoli_da_fornitore.php" >
+    <form method="get" action="articoli_da_fornitore.php">
         <label> Inserici codice fornitore </label>
         <input type="text" name="codiceFornitore">
         <input type="submit" value="Invia">
@@ -24,9 +24,9 @@
         <input type="submit" value="Invia">
     </form>
 
-    <form  method="get" action="modifica_articoli">
+    <form method="post" action="modifica.php">
         <label> Scegli articolo da modificare </label>
-        <select name="articoli">
+        <select name="codice_articolo">
             <?php
             include 'conn.php';
             $conn = mysqli_connect($servername, $db_username, $db_password, $database);
@@ -46,7 +46,6 @@
             ?>
         </select>
         <input type="submit" value="Invia">
-
     </form>
 </body>
 </html>
